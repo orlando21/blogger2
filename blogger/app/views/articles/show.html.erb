@@ -1,10 +1,17 @@
 <h1><%= @article.title %></h1>
+<p>
+  Tags:
+  <% @article.tags.each do |tag| %>
+  <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+</p>
 <p><%= @article.body %></p>
 <br />
 <br />
 <br />
 <%= link_to "Edit article", edit_article_path(@article) %><p></p>
 <%= link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"} %><p></p>
+<%= link_to "All tags", tags_path %><p></p>
 <h3>Comments</h3>
 <%= render partial: "articles/comment", collection: @article.comments %>
 <%= render partial: "comments/form" %>
